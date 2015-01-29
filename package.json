@@ -1,0 +1,29 @@
+{
+  "name": "hapi-weather",
+  "version": "0.0.1",
+  "description": "simple hapi app to pull weather from forecast.io",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leftcoastgeek/hapi-weather.git"
+  },
+  "keywords": [
+    "hapi",
+    "forecast.io"
+  ],
+  "author": "Keith Mitchell",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leftcoastgeek/hapi-weather/issues"
+  },
+  "homepage": "https://github.com/leftcoastgeek/hapi-weather",
+  "dependencies": {
+    "dotenv": "^0.5.1",
+    "hapi": "^8.1.0",
+    "lodash": "^3.0.0",
+    "wreck": "^5.1.0"
+  }
+}

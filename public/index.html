@@ -1,0 +1,74 @@
+
+
+<html class="no-js"><head>
+  <meta charset="utf-8">
+  <title>Weather</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <!-- build:css styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.13.0/css/semantic.min.css">
+  <!-- endbower -->
+  <!-- endbuild -->
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700,300&amp;subset=latin,vietnamese" rel="stylesheet" type="text/css">
+
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="main.css">
+  <!-- endbuild -->
+  <style type="text/css"></style></head>
+  <body cz-shortcut-listen="true">
+
+    <main class="ui page grid">
+      <div class="row">
+        <div class="center aligned starter column">
+          <h1 class="ui header">Weather by zip</h1>
+          <form id="weather">
+            <input type="text" id="zip" placeholder="enter zip code"/>
+            <button type="submit">get my weather!</button>
+          </form>
+
+          <div id="result">
+
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.13.0/javascript/semantic.min.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <script>
+      $('#weather').submit(function(e) {
+        e.preventDefault();
+        var zip = $(e.currentTarget).find('input').val();
+        if(!zip || zip.length <= 4){
+            alert('nope thats a bad zip try again');
+            return false;
+        }
+        $.ajax({
+          url : '/weather',
+          type: "POST",
+          data : {zip: zip},
+          datatype: 'json',
+          success:function(data, textStatus, jqXHR)
+          {
+            var html = $('<div>JSON.stringify(data)</div>')
+            $('#result').html(html)
+          },
+          error: function(jqXHR, textStatus, errorThrown)
+          {
+            $('#result').html('whoops look like that did not work');
+          }
+        })
+      })
+    </script>
+
+  </body>
+
+  </html>
